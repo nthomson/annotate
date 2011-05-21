@@ -1,6 +1,8 @@
 $(document).ready(
 	function(){
 		var addIsOn = false;
+		
+		//Add menu button
 		$('.add.control').click(
 			function(){
 				cancel();
@@ -12,12 +14,40 @@ $(document).ready(
 				$('#source').css('cursor', 'crosshair');
 			}
 		);
+		
+		//Show All menu button
+		$('.show.control').click(
+			function(){
+				$('.annotation').each(
+					function(){
+						$(this).children('textarea').show();
+					}
+				);
+			}
+		);
+		
+		//Hide All menu button
+		$('.hide.control').click(
+			function(){
+				$('.annotation').each(
+					function(){
+						$(this).children('textarea').hide();
+					}
+				);
+			}
+		);
+		
+		//Cancel menu button
 		$('.cancel.control').click(function(){cancel();});
+		
+		//Share menu button
 		$('.share.control').click(
 			function(){
 				//Not yet implemented
 			}
 		);
+		
+		//When clicking on the "source" div
 		$('#source').click(
 			function(e){
 				if(addIsOn){
@@ -46,18 +76,29 @@ $(document).ready(
 					$(annotation).css('top', y+"px");
 					
 					//Create remove button
-					var remove = $(document.createElement('a')).attr('class', 'remove');
+					var remove = $(document.createElement('a')).attr('class', 'button remove');
 					$(remove).attr('href', 'javascript:void(0)');
 					$(remove).html('x');
-					$(remove).click(function(){$(this).parent().remove();});
+					$(remove).click(function(){$(this).parent().parent().remove();});
 					
-					//Append textbox and remove button to annotation, and annotation to textbox
-					$(remove).appendTo(annotation);
+					//Create toggle button
+					var toggle = $(document.createElement('a')).attr('class', 'button toggle');
+					$(toggle).attr('href', 'javascript:void(0)');
+					$(toggle).html('~');
+					$(toggle).click(function(){minMax($(this).parent().parent());});
+
+					
+					var buttons = $(document.createElement('div')).attr('class', 'buttons');
+					
+					//Append textbox and buttons to annotation, and annotation to textbox
+					$(toggle).appendTo(buttons);
+					$(remove).appendTo(buttons);
+					$(buttons).appendTo(annotation);
 					$(textBox).appendTo(annotation);
 					
 					$(annotation).appendTo('#source');
 					
-					$(annotation).hover(function(){$(remove).show();}, function(){$(remove).hide();});
+					
 					
 					//Set focus
 					$(textBox).focus();
@@ -78,6 +119,10 @@ $(document).ready(
 			addIsOn = false;
 			//Show "off" images
 			$('#source').css('cursor', 'default');
+		}
+		
+		var minMax = function(toToggle) {
+			$(toToggle).children('textarea').toggle();
 		}
 	}
 );

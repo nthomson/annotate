@@ -60,7 +60,8 @@ body {
 	background: #fff;
 	border: 5px #99f solid;
 	border-radius: 5px;
-	padding: 5px;
+	padding: 1px;
+	min-width: 100px;
 }
 
 .annotation:after {
@@ -91,6 +92,7 @@ body {
 	background: transparent;
 	height: 16px;
 	overflow-y:hidden;
+	margin: 4px;
 }
 
 .annotation textarea:focus {
@@ -98,29 +100,37 @@ body {
 	outline: none;
 }
 
-.annotation a.remove {
+.annotation .buttons {
 	position: absolute;
-	top: -13px;
-	right: -13px;
-	width: 22px;
-	line-height: 22px;
-	height: 22px;
-	text-align: center;
-	text-decoration: none;
-	font-size: 8pt;
+	top: -20px;
+	right: -5px;
+	line-height: 15px;
+	font-size: 10pt;
 	font-weight: bold;
-	background: #333;
-	cursor: pointer;
-	z-index: 1103;
-	display: none;
-	color: #fff;
-	border: 3px #fff solid;
-	border-radius: 20px;
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	box-shadow: 0 0 5px #000;
-	-moz-box-shadow: 0 0 5px #000;
-	-webkit-border-radius: 20px;
+	border: 5px #99f solid;
+	border-bottom: 0;
+	
+	background: #fff;
+	z-index: 1000;
+	border-radius: 5px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
+.annotation a.button {
+	padding: 7px;
+	text-align: center;
+	text-decoration: none;
+	color: #555;
+}
+.annotation a.button:hover {
+	color: #000;
+}
 
+.annotation a.remove {
+	right: -13px;
+}
+
+.annotation a.toggle {
+	right: 18px;
+}
