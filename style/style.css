@@ -1,0 +1,126 @@
+/*Default Stylings */
+/*Set all margins and paddings to none, make sans-serif the default font*/
+* {	margin:0;
+	padding:0;
+	font-family: 'Helvetica', sans-serif;
+}
+/* This helps to make newer HTML5 elements behave like DIVs in older browers */
+article, aside, details, figcaption, figure, dialog,
+footer, header, hgroup, menu, nav, section { display:block; }
+/* Remove annoying border on linked images. */
+a img { border: none; }
+.left { float:left; }
+.right { float:right; }
+.center { text-align:center; }
+.clear { clear:both; }
+ul { list-style-type: none; }
+/*End Defaults*/
+
+body {
+	background: #999;
+}
+
+#source {
+	position: relative;
+	background: #fff;
+	width: 900px;
+	margin: 25px auto;
+	border: 1px #000 solid;
+	padding: 10px;
+	
+}
+
+#controls {
+	padding: 10px;
+	padding-right: 30px;
+	background: #fff;
+	position: fixed;
+	top: 25px;
+	left: 0;
+	border: 1px #000 solid;
+	border-left: 0;
+}
+
+#controls a {
+	text-decoration: none;
+	color: #888;
+	display: block;
+	text-align: center;
+	margin: 3px;
+}
+
+#controls a.selected {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #333;
+}
+
+.annotation {
+	position: absolute;
+	background: #fff;
+	border: 5px #99f solid;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.annotation:after {
+	content: '';
+	height:0;
+	width: 0;
+	position: absolute;
+	top: -20px;
+	left: 10px;
+	border: 10px solid transparent;
+	border-bottom: 10px solid #fff;
+}
+
+.annotation:before {
+	content: '';
+	height:0;
+	width: 0;
+	position: absolute;
+	top: -31px;
+	left: 5px;
+	border: 15px solid transparent;
+	border-bottom: 15px solid #99f;
+}
+
+.annotation textarea {
+	border: 0;
+	margin:0;
+	background: transparent;
+	height: 16px;
+	overflow-y:hidden;
+}
+
+.annotation textarea:focus {
+	background: #fff;
+	outline: none;
+}
+
+.annotation a.remove {
+	position: absolute;
+	top: -13px;
+	right: -13px;
+	width: 22px;
+	line-height: 22px;
+	height: 22px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 8pt;
+	font-weight: bold;
+	background: #333;
+	cursor: pointer;
+	z-index: 1103;
+	display: none;
+	color: #fff;
+	border: 3px #fff solid;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	box-shadow: 0 0 5px #000;
+	-moz-box-shadow: 0 0 5px #000;
+	-webkit-border-radius: 20px;
+}
+
+
