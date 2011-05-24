@@ -1,5 +1,6 @@
 $(document).ready(
 	function(){
+		var annotations = new Array();
 		var addIsOn = false;
 		
 		//Add menu button
@@ -43,7 +44,7 @@ $(document).ready(
 		//Share menu button
 		$('.share.control').click(
 			function(){
-				//Not yet implemented
+				getURL();
 			}
 		);
 		
@@ -127,8 +128,27 @@ $(document).ready(
 			
 			//Set focus
 			$(textBox).focus();
+			
+			//Do resizing
 			$(textBox).keyup();
+			
+			annotations.push(new Array(left, top, text));
 			cancel();
+		}
+		
+		var getURL = function(){
+			var lefts = '';
+			var tops = '';
+			var strings = '';
+			for(var i = 0; i < annotations.length; i ++) {
+				lefts += annotations[i][0] +'|';
+				tops += annotations[i][1] + '|';
+				strings += annotations[i][2] + '|';
+			}
+			
+			
+			var url = 'http://nick.kanicweb.com/projects/annotate/?lefts='+lefts+"&tops="+tops+'&strings='+strings;
+			alert(url);
 		}
 		
 		//Add URL annotations

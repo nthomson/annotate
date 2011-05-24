@@ -15,7 +15,7 @@
 			<li><a href="javascript:void(0)" class="cancel control">Cancel</a></li>
 			<li><a href="javascript:void(0)" class="show control">Show All</a></li>
 			<li><a href="javascript:void(0)" class="hide control">Hide All</a></li>
-			<li><a href="javascript:void(0)" class="share control"></a></li>
+			<li><a href="javascript:void(0)" class="share control">Share</a></li>
 		</ul>
 	</div>
 	<div id="source">
