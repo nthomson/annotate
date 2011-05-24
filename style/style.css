@@ -23,10 +23,11 @@ body {
 #source {
 	position: relative;
 	background: #fff;
-	width: 900px;
 	margin: 25px auto;
 	border: 1px #000 solid;
 	padding: 10px;
+	float: left;
+	margin-left: 125px;
 	
 }
 
