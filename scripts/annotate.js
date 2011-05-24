@@ -1,6 +1,5 @@
 $(document).ready(
 	function(){
-		var annotations = new Array();
 		var addIsOn = false;
 		
 		//Add menu button
@@ -132,7 +131,6 @@ $(document).ready(
 			//Do resizing
 			$(textBox).keyup();
 			
-			annotations.push(new Array(left, top, text));
 			cancel();
 		}
 		
@@ -140,15 +138,24 @@ $(document).ready(
 			var lefts = '';
 			var tops = '';
 			var strings = '';
-			for(var i = 0; i < annotations.length; i ++) {
-				lefts += annotations[i][0] +'|';
-				tops += annotations[i][1] + '|';
-				strings += annotations[i][2] + '|';
-			}
+			$('.annotation').each(
+				function() {
+					lefts += this.style.left.replace('px', '') +'|';
+					tops += this.style.top.replace('px', '') + '|';
+					strings += $(this).children('textarea').val() + '|';
+				}
+			);
+			lefts = lefts.substring(0, lefts.length-1);
+			tops = tops.substring(0, tops.length-1);
+			strings = strings.substring(0, strings.length-1);
 			
 			
 			var url = 'http://nick.kanicweb.com/projects/annotate/?lefts='+lefts+"&tops="+tops+'&strings='+strings;
 			alert(url);
+		}
+		
+		var share = function(url) {
+			
 		}
 		
 		//Add URL annotations
@@ -157,7 +164,9 @@ $(document).ready(
 		var strings = $.getQueryString('strings').split('|');
 		
 		for(var x = 0; x < strings.length; x++) {
-			addAnnotation(lefts[x], tops[x], strings[x]);
+			if(lefts != '') {
+				addAnnotation(lefts[x], tops[x], strings[x]);
+			}
 		}
 	}
 );
