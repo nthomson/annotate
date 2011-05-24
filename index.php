@@ -17,6 +17,11 @@
 			<li><a href="javascript:void(0)" class="hide control">Hide All</a></li>
 			<li><a href="javascript:void(0)" class="share control">Share</a></li>
 		</ul>
+		
+	</div>
+	<div id="share">
+		<p>Copy and Paste this URL to share&nbsp;&nbsp; <a onclick="$('#share').hide();" href="javascript:void(0)">X</a></p>
+		<input type="text" />
 	</div>
 	<div id="source">
 		<h1>This will have our main content in it</h1>

@@ -151,11 +151,14 @@ $(document).ready(
 			
 			
 			var url = 'http://nick.kanicweb.com/projects/annotate/?lefts='+lefts+"&tops="+tops+'&strings='+strings;
-			alert(url);
+			share(url);
 		}
 		
 		var share = function(url) {
-			
+			$('#share input').val(url);
+			$('#share').show();
+			$('#share input').focus();
+			$('#share input').select();
 		}
 		
 		//Add URL annotations

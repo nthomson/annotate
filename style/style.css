@@ -23,11 +23,10 @@ body {
 #source {
 	position: relative;
 	background: #fff;
-	margin: 25px auto;
+	margin: 75px auto;
 	border: 1px #000 solid;
 	padding: 10px;
-	float: left;
-	margin-left: 125px;
+	max-width: 1200px;
 	
 }
 
@@ -36,10 +35,20 @@ body {
 	padding-right: 30px;
 	background: #fff;
 	position: fixed;
-	top: 25px;
-	left: 0;
-	border: 1px #000 solid;
-	border-left: 0;
+	top: 0;
+	width: 100%;
+	border-bottom: 1px #000 solid;
+	z-index: 2000;
+	text-align: center;
+}
+
+#controls li {
+	display: inline-block;
+	width: 100px;
+}
+
+#controls li:last-child{
+	float: right;
 }
 
 #controls a {
@@ -50,10 +59,38 @@ body {
 	margin: 3px;
 }
 
-#controls a.selected {
-	font-weight: bold;
-	text-decoration: underline;
+#controls a.selected, #controls a:hover {
 	color: #333;
+}
+
+#share {
+	display: none;
+	border: 1px #666 solid;
+	position: fixed;
+	right: 5px;
+	top: 50px;
+	background: #fff;
+	z-index: 2000;
+	padding: 10px;
+	padding-top: 0;
+	text-align: right;
+}
+
+#share p {
+	margin: 5px;
+}
+
+#share p a{
+	text-decoration: none;
+	color: #999;
+}
+
+#share p a:hover {
+	color: #333;
+}
+
+#share input {
+	width: 290px;
 }
 
 .annotation {
@@ -62,7 +99,7 @@ body {
 	border: 5px #99f solid;
 	border-radius: 5px;
 	padding: 1px;
-	min-width: 100px;
+	width: 250px;
 }
 
 .annotation:after {
@@ -94,6 +131,7 @@ body {
 	height: 16px;
 	overflow-y:hidden;
 	margin: 4px;
+	width: 240px;
 }
 
 .annotation textarea:focus {
