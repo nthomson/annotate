@@ -99,7 +99,7 @@ body {
 	border: 5px #99f solid;
 	border-radius: 5px;
 	padding: 1px;
-	width: 250px;
+	min-width: 250px;
 }
 
 .annotation:after {
