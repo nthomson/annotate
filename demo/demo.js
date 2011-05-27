@@ -9,11 +9,13 @@ $(document).ready(function(){
 		share_control: '.share.control'
 	};
 	
-
+	var saved_annotations = [
+		{'x': 200, 'y': 200, 'text': 'Sample Text'}
+	];
 	
 	//We pass this object to annotate_js, when the save function is run, it will have a 
 	//.json property that contains all the annotations on the page
-	var saved_annotations = new Object();
+	var save_annotations_to = new Object();
 	
-	annotate_js(settings, saved_annotations);
+	annotate_js(settings, save_annotations_to, saved_annotations);
 });
