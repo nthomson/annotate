@@ -21,13 +21,15 @@ body {
 }
 
 #source {
-	position: relative;
 	background: #fff;
 	margin: 75px auto;
 	border: 1px #000 solid;
 	padding: 10px;
 	max-width: 1200px;
-	
+	padding: 240px 0;
+	color: #ccc;
+	font-size: 100pt;
+	text-align: center;
 }
 
 #controls {
@@ -59,8 +61,13 @@ body {
 	margin: 3px;
 }
 
-#controls a.selected, #controls a:hover {
+#controls a.selected {
 	color: #333;
+	font-weight: bold;
+}
+
+#controls a:hover {
+  color: #666;
 }
 
 #share {
@@ -94,12 +101,24 @@ body {
 }
 
 .annotation {
-	position: absolute;
+  font-size: 10pt;
 	background: #fff;
 	border: 5px #99f solid;
 	border-radius: 5px;
 	padding: 1px;
-	min-width: 250px;
+	min-height: 26px;
+	min-width: 80px;
+}
+
+.annotation textarea {
+	border: 0;
+	margin:0;
+	background: transparent;
+	overflow-y: hidden;
+	margin: 4px;
+	width: 175px;
+	height: 16px;
+	
 }
 
 .annotation:after {
@@ -124,18 +143,8 @@ body {
 	border-bottom: 15px solid #99f;
 }
 
-.annotation textarea {
-	border: 0;
-	margin:0;
-	background: transparent;
-	height: 16px;
-	overflow-y:hidden;
-	margin: 4px;
-	width: 240px;
-}
 
 .annotation textarea:focus {
-	background: #fff;
 	outline: none;
 }
 
