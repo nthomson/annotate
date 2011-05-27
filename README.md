@@ -7,12 +7,31 @@ You can view a demo [here](http://nick.kanicweb.com/projects/annotate/demo)
 
 ##Usage
 
+Annotate requires jQuery 1.6.1
+
+To use download the annotate.js file and reference it in the head section of your page.
+You must also make a call to the annotate_js function. Which takes three parameters, described below.
+
+The simplest possible call to annotate_js is as follows:
+
+	annotate_js({source_element: "#source"});
+	
+Every other parameter is optional, however you will be missing a lot of functionality without them.
+
+##Parameters
+
+annotate_js has a function header as follows:
+
+	annotate_js(settings, save_annotations_to, saved_annotations)
+	
+Each paramater is described below
+
 ###Settings:
 
-A JSON Object passed in controlling the behavior of annotate
+A JSON Object passed in controlling the behavior of annotate. This is required.
 
 source_element:
-The element the annotations should be added to
+The element the annotations should be added to. This is required.
 
 annotation_xoff:
 The X offset in pixels to use when placing annotations -- useful if you don't want the annotation's top-left corner aligned to the mouse click
