@@ -17,19 +17,20 @@ ul { list-style-type: none; }
 /*End Defaults*/
 
 body {
-	background: #999;
+	background: #bbb;
 }
 
 #source {
 	background: #fff;
-	margin: 75px auto;
-	border: 1px #000 solid;
+	margin: 0 auto;
+	margin-top: 90px;
 	padding: 10px;
 	max-width: 1200px;
 	padding: 240px 0;
 	color: #ccc;
 	font-size: 100pt;
 	text-align: center;
+
 }
 
 #controls {
@@ -40,9 +41,10 @@ body {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	border-bottom: 1px #000 solid;
+
 	z-index: 2000;
 	text-align: center;
+	box-shadow: -5px 5px 10px #777;
 }
 
 #controls li {

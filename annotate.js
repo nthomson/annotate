@@ -1,11 +1,13 @@
-function annotate_js(settings, existing_annotations) {
-	var source_element = settings.source_element;
-	var annotation_xoff = settings.annotation_xoff;
-	var annotation_yoff = settings.annotation_yoff;
-	var add_control = settings.add_control;
-	var toggle_control = settings.toggle_control;
-	var share_control = settings.share_control;
-
+function annotate_js(settings, save_annotations_to, saved_annotations) {
+	//Settings is required
+	if(settings !== undefined) {
+		var source_element = settings.source_element;
+		var annotation_xoff = settings.annotation_xoff;
+		var annotation_yoff = settings.annotation_yoff;
+		var add_control = settings.add_control;
+		var toggle_control = settings.toggle_control;
+		var share_control = settings.share_control;
+	}
 	//source_element is required
 	if(source_element === undefined){return false;}
 	
@@ -52,10 +54,7 @@ function annotate_js(settings, existing_annotations) {
 		//Share button
 		$(share_control).click(
 			function() {
-				var url = get_share_url();
-				$('#share input').val(url);
-				$('#share').toggle();
-				$('#share input').select();
+				save_annotations_to.json = get_annotation_json();
 			}
 		);
 	}
@@ -72,22 +71,19 @@ function annotate_js(settings, existing_annotations) {
 		}
 	);
 
-	var get_share_url = function(){
-		var lefts = '';
-		var tops = '';
-		var strings = '';
+	var get_annotation_json = function(){
+		var json = [];
 		$('.annotation').each(
 			function() {
-				lefts += this.style.left.replace('px', '') +'|';
-				tops += this.style.top.replace('px', '') + '|';
-				strings += $(this).children('textarea').val() + '|';
+				var annotation = {};
+				annotation['x'] = $(this).position().left;
+				annotation['y'] = $(this).position().top;
+				annotation['text'] = $(this).children('textarea').val();
+				json.push(annotation);
 			}
 		);
-		lefts = lefts.substring(0, lefts.length-1);
-		tops = tops.substring(0, tops.length-1);
-		strings = strings.substring(0, strings.length-1);
-	
-		return 'http://nick.kanicweb.com/projects/annotate/demo/?lefts='+lefts+"&tops="+tops+'&strings='+strings;
+		
+		return json;
 	}
 
 	//Add an annotation
@@ -180,20 +176,14 @@ function annotate_js(settings, existing_annotations) {
 	var annotation_toggle = function(annotation){
 		$(annotation).children('textarea').animate({height: 'toggle', width: 'toggle', opacity: 'toggle'});
 	}
-
-	//Add annotations from querystring
-	var lefts = $.getQueryString('lefts');
-	var tops = $.getQueryString('tops')
-	var strings = $.getQueryString('strings')
 	
-	if(lefts != undefined){
-		lefts = lefts.split('|');
-		tops = tops.split('|');
-		strings = strings.split('|');
-		for(var x = 0; x < strings.length; x++) {
-			if(lefts[x] != '') {
-				add_annotation(lefts[x], tops[x], strings[x]);
+	if(saved_annotations !== undefined) {
+		//Add annotations that were passed in
+		for(var key in saved_annotations) {
+			if (!saved_annotations.hasOwnProperty(key)){
+				continue;
 			}
+			add_annotation(saved_annotations[key].x, saved_annotations[key].y, saved_annotations[key].text);
 		}
 	}
 }
