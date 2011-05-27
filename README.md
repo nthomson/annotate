@@ -30,33 +30,35 @@ Each paramater is described below
 
 A JSON Object passed in controlling the behavior of annotate. This is required.
 
-source_element:
+__source_element:__
 The element the annotations should be added to. This is required.
 
-annotation_xoff:
+__annotation_xoff:__
 The X offset in pixels to use when placing annotations -- useful if you don't want the annotation's top-left corner aligned to the mouse click
 
-annotation_yoff:
+__annotation_yoff:__
 The Y offset in pixels to use when placing annotations -- useful if you don't want the annotation's top-left corner aligned to the mouse click
 
-add_control:
+__add_control:__
 The button that will be used as the add annotation tool. When add is "on" there will be a "selected" class applied to the button.
 
-toggle_control:
+__toggle_control:__
 The button that will be used as the Toggle all control.
 
-save_control:
+__save_control__:
 The button that will update the saved_annotations object with the json representing the annotations on the page
 
 ###save_annotations_to:
 
-This is an object, its usually empty. After the user hits the element passed to the save_control, all of the annotations on the page will be represented within save_annotations_to.json
+This is an object, its usually empty. After the user hits the the save_control, all of the annotations on the page will be represented within save_annotations_to.json
 
 
 ###saved_annotations:
 
 A JSON Object representing any annotations you would like to be automatically populated when the page loads
 
-x: The x position of the annotation relative to the source_element
-y: The y position of the annotation relative to the source_element
-text: The annotation's text
+__x:__ The x position of the annotation relative to the source_element
+
+__y:__ The y position of the annotation relative to the source_element
+
+__text:__ The annotation's text
