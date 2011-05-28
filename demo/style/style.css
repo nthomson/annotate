@@ -18,19 +18,34 @@ ul { list-style-type: none; }
 
 body {
 	background: #bbb;
+	min-width: 1260px;
 }
 
 #source {
 	background: #fff;
-	margin: 0 auto;
-	margin-top: 90px;
+	float: left;
+	margin: 15px;
+	margin-top: 35px;
+	min-width: 1000px;
 	padding: 10px;
 	max-width: 1200px;
 	padding: 240px 0;
 	color: #ccc;
 	font-size: 100pt;
 	text-align: center;
+}
 
+#source_list {
+	float: left;
+	background: #fff;
+	width: 180px;
+	margin: 15px;
+	margin-top: 35px;
+	padding: 10px;
+}
+
+#source_list ul {
+	margin-left: 10px;
 }
 
 #controls {
@@ -41,7 +56,6 @@ body {
 	position: fixed;
 	top: 0;
 	width: 100%;
-
 	z-index: 2000;
 	text-align: center;
 	box-shadow: -5px 5px 10px #777;
@@ -50,10 +64,6 @@ body {
 #controls li {
 	display: inline-block;
 	width: 100px;
-}
-
-#controls li:last-child{
-	float: right;
 }
 
 #controls a {
@@ -73,35 +83,7 @@ body {
   color: #666;
 }
 
-#share {
-	display: none;
-	border: 1px #666 solid;
-	position: fixed;
-	right: 5px;
-	top: 50px;
-	background: #fff;
-	z-index: 2000;
-	padding: 10px;
-	padding-top: 0;
-	text-align: right;
-}
 
-#share p {
-	margin: 5px;
-}
-
-#share p a{
-	text-decoration: none;
-	color: #999;
-}
-
-#share p a:hover {
-	color: #333;
-}
-
-#share input {
-	width: 290px;
-}
 
 .annotation {
   font-size: 10pt;
