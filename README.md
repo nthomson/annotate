@@ -4,6 +4,29 @@ Annotate is work-in-progress, its a javascript module which adds annotations to 
 
 You can view a demo [here](http://nick.kanicweb.com/projects/annotate/demo)
 
+##Requirements
+To run the demo as is, you need a mysql database named annotate with a table named annotations (export below)
+You also need a db_connect.php file in your server's root directory.
+
+Phpmyadmin annotations table export:
+
+	SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+	CREATE TABLE IF NOT EXISTS `annotations` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `x` int(11) NOT NULL,
+	  `y` int(11) NOT NULL,
+	  `text` text NOT NULL,
+	  `source_id` int(11) NOT NULL,
+	  PRIMARY KEY (`id`)
+	) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+	
+
+Sample db_connect.php
+
+	mysql_connect("localhost", "youruser", "yourpass") or die(mysql_error());
+
+
 
 ##Usage
 
