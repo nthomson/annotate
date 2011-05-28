@@ -6,7 +6,7 @@ function annotate_js(settings, save_annotations_to, saved_annotations) {
 		var annotation_yoff = settings.annotation_yoff;
 		var add_control = settings.add_control;
 		var toggle_control = settings.toggle_control;
-		var share_control = settings.share_control;
+		var save_control = settings.save_control;
 	}
 	//source_element is required
 	if(source_element === undefined){return false;}
@@ -50,11 +50,11 @@ function annotate_js(settings, save_annotations_to, saved_annotations) {
 		);
 	}
 
-	if(share_control !== undefined) {
+	if(save_control !== undefined) {
 		//Share button
-		$(share_control).click(
+		$(save_control).click(
 			function() {
-				save_annotations_to.json = get_annotation_json();
+				//save_annotations_to.json = get_annotation_json();
 			}
 		);
 	}
@@ -75,11 +75,11 @@ function annotate_js(settings, save_annotations_to, saved_annotations) {
 		var json = [];
 		$('.annotation').each(
 			function() {
-				var annotation = {};
-				annotation['x'] = $(this).position().left;
-				annotation['y'] = $(this).position().top;
-				annotation['text'] = $(this).children('textarea').val();
-				json.push(annotation);
+				var annotation_json = {};
+				annotation_json['x'] = $(this).position().left;
+				annotation_json['y'] = $(this).position().top;
+				annotation_json['text'] = $(this).children('textarea').val();
+				json.push(annotation_json);
 			}
 		);
 		
@@ -137,6 +137,10 @@ function annotate_js(settings, save_annotations_to, saved_annotations) {
 		var tbH = $(textBox).height();
 		var tbW = $(textBox).width();
 		$(textBox).css({height: 0, width: 0});
+		
+		$(textBox).change(function(){
+			save_annotations_to.json = get_annotation_json();
+		});
 
 		//Animate the annotation in
 		$(annotation).animate({opacity: annOp}, 800);
@@ -148,6 +152,7 @@ function annotate_js(settings, save_annotations_to, saved_annotations) {
 				$(textBox).keyup();
 			}
 		); 
+		save_annotations_to.json = get_annotation_json();
 	}
 
 	var nav_selection_cancel = function(){
@@ -169,6 +174,7 @@ function annotate_js(settings, save_annotations_to, saved_annotations) {
 		$(annotation).fadeOut(300, 
 			function(){
 				$(this).remove()
+				save_annotations_to.json = get_annotation_json();
 			}
 		);
 	}
