@@ -19,7 +19,6 @@ $(document).ready(function(){
 	});
 	
 	$('.save.control.').click(function(){
-		console.log('Save');
 		var json = JSON.stringify(save_annotations_to.json);
 		$.post("json_save.php", {source_id: srcId, data: json}, function(data){
 		});

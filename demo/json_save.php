@@ -1,6 +1,6 @@
 <?php
 
-include('/db_connect.php');
+include($_SERVER['DOCUMENT_ROOT'].'/db_connect.php');
 
 $json = json_decode($_POST['data']);
 $source_id = $_POST['source_id'];
