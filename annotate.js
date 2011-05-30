@@ -152,7 +152,11 @@ function annotate_js(settings, save_annotations_to, saved_annotations) {
 		); 
 
                 //Make the annotation draggable
-                $('.annotation').draggable();
+                $('.annotation').draggable({
+                         stop: function(event, ui) {
+                                save_annotations_to.json = get_annotation_json();
+                         }                       
+                });
 
 		save_annotations_to.json = get_annotation_json();
 	}
