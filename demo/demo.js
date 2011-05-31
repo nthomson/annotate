@@ -7,7 +7,6 @@ $(document).ready(function(){
 		annotation_yoff: 10,
 		add_control: '.add.control',
 		toggle_control: '.toggle.control',
-		save_control: '.save.control'
 	};
 	
 	//We pass this object to annotate_js, when the save function is run, it will have a 

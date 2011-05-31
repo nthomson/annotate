@@ -6,7 +6,6 @@ function annotate_js(settings, save_annotations_to, saved_annotations) {
 		var annotation_yoff = settings.annotation_yoff;
 		var add_control = settings.add_control;
 		var toggle_control = settings.toggle_control;
-		var save_control = settings.save_control;
 	}
 	//source_element is required
 	if(source_element === undefined){return false;}
@@ -46,15 +45,6 @@ function annotate_js(settings, save_annotations_to, saved_annotations) {
 						annotation_toggle(this);
 					}
 				);
-			}
-		);
-	}
-
-	if(save_control !== undefined) {
-		//Share button
-		$(save_control).click(
-			function() {
-				//save_annotations_to.json = get_annotation_json();
 			}
 		);
 	}

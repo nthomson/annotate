@@ -68,12 +68,10 @@ The button that will be used as the add annotation tool. When add is "on" there 
 __toggle_control:__
 The button that will be used as the Toggle all control.
 
-__save_control__:
-The button that will update the saved_annotations object with the json representing the annotations on the page
 
 ###save_annotations_to:
 
-This is an object, its usually empty. After the user hits the the save_control, all of the annotations on the page will be represented within save_annotations_to.json
+This is an object, it usually starts empty. The state of the annotations on the page are represented within save_annotations_to.json, it is updated any time the state changes.
 
 
 ###saved_annotations:
