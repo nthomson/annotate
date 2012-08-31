@@ -14,11 +14,11 @@ mysql_query($sql);
 
 //Insert the annotations we've saved
 foreach($json as $annotation) {
-	$x = $annotation->x;
-	$y = $annotation->y;
-	$text = $annotation->text;
-	$sql = "INSERT into annotations (x, y, text, source_id) VALUES($x, $y, '$text', $source_id);";
-	mysql_query($sql);
+    $x = $annotation->x;
+    $y = $annotation->y;
+    $text = $annotation->text;
+    $sql = "INSERT into annotations (x, y, text, source_id) VALUES($x, $y, '$text', $source_id);";
+    mysql_query($sql);
 }
 
 ?>

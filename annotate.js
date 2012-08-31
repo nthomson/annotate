@@ -1,145 +1,145 @@
 function annotate_js(settings, save_annotations_to, saved_annotations) {
-	//Settings is required
-	if(settings !== undefined) {
-		var source_element = settings.source_element;
-		var annotation_xoff = settings.annotation_xoff;
-		var annotation_yoff = settings.annotation_yoff;
-		var add_control = settings.add_control;
-		var toggle_control = settings.toggle_control;
-	}
-	//source_element is required
-	if(source_element === undefined){return false;}
-	
-	if( $(source_element).css('position') == 'static') {
-		$(source_element).css('position', 'relative');
-	}
-	
-	var addIsOn = false;
-	/* Menu Buttons */
-	
-	if(add_control !== undefined) {
-		//Add button
-		$(add_control).click(
-			function(){
-				if(addIsOn){
-					nav_selection_cancel();
-				}
-				else {
-					//Turn control on
-					addIsOn = true;
-					//Show "on" image
-					$(this).toggleClass('selected');
-					//Change cursor
-					$(source_element).css('cursor', 'crosshair');
-				}
-			}
-		);
-	}
+    //Settings is required
+    if(settings !== undefined) {
+        var source_element = settings.source_element;
+        var annotation_xoff = settings.annotation_xoff;
+        var annotation_yoff = settings.annotation_yoff;
+        var add_control = settings.add_control;
+        var toggle_control = settings.toggle_control;
+    }
+    //source_element is required
+    if(source_element === undefined){return false;}
+    
+    if( $(source_element).css('position') == 'static') {
+        $(source_element).css('position', 'relative');
+    }
+    
+    var addIsOn = false;
+    /* Menu Buttons */
+    
+    if(add_control !== undefined) {
+        //Add button
+        $(add_control).click(
+            function(){
+                if(addIsOn){
+                    nav_selection_cancel();
+                }
+                else {
+                    //Turn control on
+                    addIsOn = true;
+                    //Show "on" image
+                    $(this).toggleClass('selected');
+                    //Change cursor
+                    $(source_element).css('cursor', 'crosshair');
+                }
+            }
+        );
+    }
 
-	if(toggle_control !== undefined) {
-		//Toggle All button
-		$(toggle_control).click(
-			function(){
-				$('.annotation').each(
-					function(){
-						annotation_toggle(this);
-					}
-				);
-			}
-		);
-	}
-	
-	$(source_element).click(
-		function(e){
-			if(addIsOn){
-				//Get X/Y with chat-arrow and page offsets
-				var x = e.pageX - this.offsetLeft + annotation_xoff;
-				var y = e.pageY - this.offsetTop + annotation_yoff;
-								
-				add_annotation(x, y);
-			}
-		}
-	);
+    if(toggle_control !== undefined) {
+        //Toggle All button
+        $(toggle_control).click(
+            function(){
+                $('.annotation').each(
+                    function(){
+                        annotation_toggle(this);
+                    }
+                );
+            }
+        );
+    }
+    
+    $(source_element).click(
+        function(e){
+            if(addIsOn){
+                //Get X/Y with chat-arrow and page offsets
+                var x = e.pageX - this.offsetLeft + annotation_xoff;
+                var y = e.pageY - this.offsetTop + annotation_yoff;
+                                
+                add_annotation(x, y);
+            }
+        }
+    );
 
-	var get_annotation_json = function(){
-		var json = [];
-		$('.annotation').each(
-			function() {
-				var annotation_json = {};
-				annotation_json['x'] = $(this).position().left;
-				annotation_json['y'] = $(this).position().top;
-				annotation_json['text'] = $(this).children('textarea').val();
-				json.push(annotation_json);
-			}
-		);
-		
-		return json;
-	}
+    var get_annotation_json = function(){
+        var json = [];
+        $('.annotation').each(
+            function() {
+                var annotation_json = {};
+                annotation_json['x'] = $(this).position().left;
+                annotation_json['y'] = $(this).position().top;
+                annotation_json['text'] = $(this).children('textarea').val();
+                json.push(annotation_json);
+            }
+        );
+        
+        return json;
+    }
 
-	//Add an annotation
-	var add_annotation = function(x, y, text) {
-		//Create annotation
-		var annotation = $(document.createElement('div')).addClass('annotation');
-		
-		
-		//Create textbox
-		var textBox = $(document.createElement('textarea'));
-		$(textBox).html(text);
-		                
-		//Create remove button
-		var remove = $(document.createElement('a')).addClass('button remove');
-		$(remove).attr('href', 'javascript:void(0)');
-		$(remove).html('x');
-		$(remove).click(function(){
-			annotation_remove(annotation);
-		});
+    //Add an annotation
+    var add_annotation = function(x, y, text) {
+        //Create annotation
+        var annotation = $(document.createElement('div')).addClass('annotation');
+        
+        
+        //Create textbox
+        var textBox = $(document.createElement('textarea'));
+        $(textBox).html(text);
+                        
+        //Create remove button
+        var remove = $(document.createElement('a')).addClass('button remove');
+        $(remove).attr('href', 'javascript:void(0)');
+        $(remove).html('x');
+        $(remove).click(function(){
+            annotation_remove(annotation);
+        });
 
-		//Create toggle button
-		var toggle = $(document.createElement('a')).attr('class', 'button toggle');
-		$(toggle).attr('href', 'javascript:void(0)');
-		$(toggle).html('~');
-		$(toggle).click(function(){annotation_toggle( annotation );});
+        //Create toggle button
+        var toggle = $(document.createElement('a')).attr('class', 'button toggle');
+        $(toggle).attr('href', 'javascript:void(0)');
+        $(toggle).html('~');
+        $(toggle).click(function(){annotation_toggle( annotation );});
 
-		
-		var buttons = $(document.createElement('div')).attr('class', 'buttons');
-	
-		//Append everything where it needs to be
-		$(toggle).appendTo(buttons);
-		$(remove).appendTo(buttons);
-		$(buttons).appendTo(annotation);
-		$(textBox).appendTo(annotation);
+        
+        var buttons = $(document.createElement('div')).attr('class', 'buttons');
+    
+        //Append everything where it needs to be
+        $(toggle).appendTo(buttons);
+        $(remove).appendTo(buttons);
+        $(buttons).appendTo(annotation);
+        $(textBox).appendTo(annotation);
 
-	
-		//Add the annotation to the DOM
-		$(annotation).appendTo(source_element);
-		
-		var annOp = $(annotation).css('opacity');
-		$(annotation).css({
-			left: x + 'px',
-			top: y + 'px',
-			position: 'absolute',
-		 
-		});
-		$(annotation).css('opacity', 0);
-		
-		var tbH = $(textBox).height();
-		var tbW = $(textBox).width();
-		$(textBox).css({height: 0, width: 0});
-		
-		$(textBox).change(function(){
-			save_annotations_to.json = get_annotation_json();
-		});
+    
+        //Add the annotation to the DOM
+        $(annotation).appendTo(source_element);
+        
+        var annOp = $(annotation).css('opacity');
+        $(annotation).css({
+            left: x + 'px',
+            top: y + 'px',
+            position: 'absolute',
+         
+        });
+        $(annotation).css('opacity', 0);
+        
+        var tbH = $(textBox).height();
+        var tbW = $(textBox).width();
+        $(textBox).css({height: 0, width: 0});
+        
+        $(textBox).change(function(){
+            save_annotations_to.json = get_annotation_json();
+        });
 
-		//Animate the annotation in
-		$(annotation).animate({opacity: annOp}, 800);
-		$(textBox).animate({height: tbH, width: tbW}, 400,
-			function(){
-				$(textBox).autogrow();
-				$(textBox).focus();
-				nav_selection_cancel();
-				$(textBox).keyup();
-			}
-		); 
+        //Animate the annotation in
+        $(annotation).animate({opacity: annOp}, 800);
+        $(textBox).animate({height: tbH, width: tbW}, 400,
+            function(){
+                $(textBox).autogrow();
+                $(textBox).focus();
+                nav_selection_cancel();
+                $(textBox).keyup();
+            }
+        ); 
 
                 //Make the annotation draggable
                 $('.annotation').draggable({
@@ -148,57 +148,57 @@ function annotate_js(settings, save_annotations_to, saved_annotations) {
                          }                       
                 });
 
-		save_annotations_to.json = get_annotation_json();
-	}
+        save_annotations_to.json = get_annotation_json();
+    }
 
-	var nav_selection_cancel = function(){
-		$('.control').each(
-			function(){
-				$(this).removeClass('selected');
-			}
-		);
-		//Reset controls
-		addIsOn = false;
+    var nav_selection_cancel = function(){
+        $('.control').each(
+            function(){
+                $(this).removeClass('selected');
+            }
+        );
+        //Reset controls
+        addIsOn = false;
 
-		$(source_element).css('cursor', 'default');
-	}
+        $(source_element).css('cursor', 'default');
+    }
 
 
 
-	/* Functions required for annotations */
-	var annotation_remove = function(annotation){
-		$(annotation).fadeOut(300, 
-			function(){
-				$(this).remove()
-				save_annotations_to.json = get_annotation_json();
-			}
-		);
-	}
+    /* Functions required for annotations */
+    var annotation_remove = function(annotation){
+        $(annotation).fadeOut(300, 
+            function(){
+                $(this).remove()
+                save_annotations_to.json = get_annotation_json();
+            }
+        );
+    }
 
-	var annotation_toggle = function(annotation){
-		$(annotation).children('textarea').animate({height: 'toggle', width: 'toggle', opacity: 'toggle'});
-	}
-	
-	if(saved_annotations !== undefined) {
-		//Add annotations that were passed in
-		for(var key in saved_annotations) {
-			if (!saved_annotations.hasOwnProperty(key)){
-				continue;
-			}
-			add_annotation(saved_annotations[key].x, saved_annotations[key].y, saved_annotations[key].text);
-		}
-	}
+    var annotation_toggle = function(annotation){
+        $(annotation).children('textarea').animate({height: 'toggle', width: 'toggle', opacity: 'toggle'});
+    }
+    
+    if(saved_annotations !== undefined) {
+        //Add annotations that were passed in
+        for(var key in saved_annotations) {
+            if (!saved_annotations.hasOwnProperty(key)){
+                continue;
+            }
+            add_annotation(saved_annotations[key].x, saved_annotations[key].y, saved_annotations[key].text);
+        }
+    }
 }
 
 /* jQuery Plugins */
 
 ;(function ($) {
-$.extend({			
-getQueryString: function (name) {					 
+$.extend({          
+getQueryString: function (name) {                    
 function parseParams() {
 var params = {},
 e,
-a = /\+/g,	// Regex for replacing addition symbol with a space
+a = /\+/g,  // Regex for replacing addition symbol with a space
 r = /([^&=]+)=?([^&]*)/g,
 d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
 q = window.location.search.substring(1);
@@ -226,19 +226,19 @@ $.fn.autogrow = function(options) {
 
 this.filter('textarea').each(function() {
 
-var $this			 = $(this),
-minHeight	 = $this.height(),
-lineHeight	= $this.css('lineHeight');
+var $this            = $(this),
+minHeight    = $this.height(),
+lineHeight  = $this.css('lineHeight');
 
 var shadow = $('<div></div>').css({
-position:	 'absolute',
-top:				-10000,
-left:			 -10000,
-width:			$(this).width() - parseInt($this.css('paddingLeft')) - parseInt($this.css('paddingRight')),
-fontSize:	 $this.css('fontSize'),
+position:    'absolute',
+top:                -10000,
+left:            -10000,
+width:          $(this).width() - parseInt($this.css('paddingLeft')) - parseInt($this.css('paddingRight')),
+fontSize:    $this.css('fontSize'),
 fontFamily: $this.css('fontFamily'),
 lineHeight: $this.css('lineHeight'),
-resize:		 'none'
+resize:      'none'
 }).appendTo(document.body);
 
 var update = function() {
@@ -315,7 +315,7 @@ enable:function(){return this._setOption("disabled",false)},disable:function(){r
  * http://docs.jquery.com/UI/Mouse
  *
  * Depends:
- *	jquery.ui.widget.js
+ *  jquery.ui.widget.js
  */
 (function(b){var d=false;b(document).mousedown(function(){d=false});b.widget("ui.mouse",{options:{cancel:":input,option",distance:1,delay:0},_mouseInit:function(){var a=this;this.element.bind("mousedown."+this.widgetName,function(c){return a._mouseDown(c)}).bind("click."+this.widgetName,function(c){if(true===b.data(c.target,a.widgetName+".preventClickEvent")){b.removeData(c.target,a.widgetName+".preventClickEvent");c.stopImmediatePropagation();return false}});this.started=false},_mouseDestroy:function(){this.element.unbind("."+
 this.widgetName)},_mouseDown:function(a){if(!d){this._mouseStarted&&this._mouseUp(a);this._mouseDownEvent=a;var c=this,f=a.which==1,g=typeof this.options.cancel=="string"?b(a.target).parents().add(a.target).filter(this.options.cancel).length:false;if(!f||g||!this._mouseCapture(a))return true;this.mouseDelayMet=!this.options.delay;if(!this.mouseDelayMet)this._mouseDelayTimer=setTimeout(function(){c.mouseDelayMet=true},this.options.delay);if(this._mouseDistanceMet(a)&&this._mouseDelayMet(a)){this._mouseStarted=
@@ -332,9 +332,9 @@ false;a.target==this._mouseDownEvent.target&&b.data(a.target,this.widgetName+".p
  * http://docs.jquery.com/UI/Draggables
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.mouse.js
- *	jquery.ui.widget.js
+ *  jquery.ui.core.js
+ *  jquery.ui.mouse.js
+ *  jquery.ui.widget.js
  */
 (function(d){d.widget("ui.draggable",d.ui.mouse,{widgetEventPrefix:"drag",options:{addClasses:true,appendTo:"parent",axis:false,connectToSortable:false,containment:false,cursor:"auto",cursorAt:false,grid:false,handle:false,helper:"original",iframeFix:false,opacity:false,refreshPositions:false,revert:false,revertDuration:500,scope:"default",scroll:true,scrollSensitivity:20,scrollSpeed:20,snap:false,snapMode:"both",snapTolerance:20,stack:false,zIndex:false},_create:function(){if(this.options.helper==
 "original"&&!/^(?:r|a|f)/.test(this.element.css("position")))this.element[0].style.position="relative";this.options.addClasses&&this.element.addClass("ui-draggable");this.options.disabled&&this.element.addClass("ui-draggable-disabled");this._mouseInit()},destroy:function(){if(this.element.data("draggable")){this.element.removeData("draggable").unbind(".draggable").removeClass("ui-draggable ui-draggable-dragging ui-draggable-disabled");this._mouseDestroy();return this}},_mouseCapture:function(a){var b=

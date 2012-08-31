@@ -14,7 +14,7 @@ $result = mysql_query($sql);
 
 // Retrieve all the data from the "example" table
 while ( $row = mysql_fetch_assoc($result) ) {
-	array_push($json, $row);
+    array_push($json, $row);
 }
 
 echo json_encode($json);

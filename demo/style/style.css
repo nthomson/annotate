@@ -1,8 +1,8 @@
 /*Default Stylings */
 /*Set all margins and paddings to none, make sans-serif the default font*/
-* {	margin:0;
-	padding:0;
-	font-family: 'Helvetica', sans-serif;
+* { margin:0;
+  padding:0;
+  font-family: 'Helvetica', sans-serif;
 }
 /* This helps to make newer HTML5 elements behave like DIVs in older browers */
 article, aside, details, figcaption, figure, dialog,
@@ -17,66 +17,66 @@ ul { list-style-type: none; }
 /*End Defaults*/
 
 body {
-	background: #bbb;
-	min-width: 1260px;
+  background: #bbb;
+  min-width: 1260px;
 }
 
 #source {
-	background: #fff;
-	float: left;
-	margin: 15px;
-	margin-top: 35px;
-	min-width: 1000px;
-	padding: 10px;
-	max-width: 1200px;
-	padding: 240px 0;
-	color: #ccc;
-	font-size: 100pt;
-	text-align: center;
+  background: #fff;
+  float: left;
+  margin: 15px;
+  margin-top: 35px;
+  min-width: 1000px;
+  padding: 10px;
+  max-width: 1200px;
+  padding: 240px 0;
+  color: #ccc;
+  font-size: 100pt;
+  text-align: center;
 }
 
 #source_list {
-	float: left;
-	background: #fff;
-	width: 180px;
-	margin: 15px;
-	margin-top: 35px;
-	padding: 10px;
+  float: left;
+  background: #fff;
+  width: 180px;
+  margin: 15px;
+  margin-top: 35px;
+  padding: 10px;
 }
 
 #source_list ul {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 #controls {
-	padding: 10px;
-	padding-right: 30px;
-	background: #fff;
-	height: 30px;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 2000;
-	text-align: center;
-	box-shadow: -5px 5px 10px #777;
+  padding: 10px;
+  padding-right: 30px;
+  background: #fff;
+  height: 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
+  text-align: center;
+  box-shadow: -5px 5px 10px #777;
 }
 
 #controls li {
-	display: inline-block;
-	width: 100px;
+  display: inline-block;
+  width: 100px;
 }
 
 #controls a {
-	text-decoration: none;
-	color: #888;
-	display: block;
-	text-align: center;
-	margin: 3px;
+  text-decoration: none;
+  color: #888;
+  display: block;
+  text-align: center;
+  margin: 3px;
 }
 
 #controls a.selected {
-	color: #333;
-	font-weight: bold;
+  color: #333;
+  font-weight: bold;
 }
 
 #controls a:hover {
@@ -87,83 +87,83 @@ body {
 
 .annotation {
   font-size: 10pt;
-	background: #fff;
-	border: 5px #99f solid;
-	border-radius: 5px;
-	padding: 1px;
-	min-height: 26px;
-	min-width: 80px;
+  background: #fff;
+  border: 5px #99f solid;
+  border-radius: 5px;
+  padding: 1px;
+  min-height: 26px;
+  min-width: 80px;
 }
 
 .annotation textarea {
-	border: 0;
-	margin:0;
-	background: transparent;
-	overflow-y: hidden;
-	margin: 4px;
-	width: 175px;
-	height: 16px;
-	
+  border: 0;
+  margin:0;
+  background: transparent;
+  overflow-y: hidden;
+  margin: 4px;
+  width: 175px;
+  height: 16px;
+  
 }
 
 .annotation:after {
-	content: '';
-	height:0;
-	width: 0;
-	position: absolute;
-	top: -20px;
-	left: 10px;
-	border: 10px solid transparent;
-	border-bottom: 10px solid #fff;
+  content: '';
+  height:0;
+  width: 0;
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  border: 10px solid transparent;
+  border-bottom: 10px solid #fff;
 }
 
 .annotation:before {
-	content: '';
-	height:0;
-	width: 0;
-	position: absolute;
-	top: -31px;
-	left: 5px;
-	border: 15px solid transparent;
-	border-bottom: 15px solid #99f;
+  content: '';
+  height:0;
+  width: 0;
+  position: absolute;
+  top: -31px;
+  left: 5px;
+  border: 15px solid transparent;
+  border-bottom: 15px solid #99f;
 }
 
 
 .annotation textarea:focus {
-	outline: none;
+  outline: none;
 }
 
 .annotation .buttons {
-	position: absolute;
-	top: -20px;
-	right: -5px;
-	line-height: 15px;
-	font-size: 10pt;
-	font-weight: bold;
-	border: 5px #99f solid;
-	border-bottom: 0;
-	
-	background: #fff;
-	z-index: 1000;
-	border-radius: 5px;
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 0;
+  position: absolute;
+  top: -20px;
+  right: -5px;
+  line-height: 15px;
+  font-size: 10pt;
+  font-weight: bold;
+  border: 5px #99f solid;
+  border-bottom: 0;
+  
+  background: #fff;
+  z-index: 1000;
+  border-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .annotation a.button {
-	padding: 7px;
-	text-align: center;
-	text-decoration: none;
-	color: #555;
+  padding: 7px;
+  text-align: center;
+  text-decoration: none;
+  color: #555;
 }
 .annotation a.button:hover {
-	color: #000;
+  color: #000;
 }
 
 .annotation a.remove {
-	right: -13px;
+  right: -13px;
 }
 
 .annotation a.toggle {
-	right: 18px;
+  right: 18px;
 }
