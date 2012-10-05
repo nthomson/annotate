@@ -2,7 +2,7 @@
 
 Annotate is work-in-progress, its a javascript module which adds annotations to an element specified when calling the function.
 
-You can view a demo [here](http://nick.kanicweb.com/projects/annotate/demo)
+You can view a demo [here](http://nick.kanicweb.com/projects/annotate)
 
 ##Requirements
 To run the demo as is, you need a mysql database named annotate with a table named annotations (export below)
